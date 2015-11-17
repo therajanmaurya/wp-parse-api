@@ -100,17 +100,17 @@ class WpParseApi
 			
 			$categories = array();
 			
-			foreach ($post->data['categories'] as $row) {
-				$row = trim(preg_replace('/[^a-zA-Z]/', '', $row));
-				if ($row != '') $categories[] = $row;
-			}
+			//foreach ($post->data['categories'] as $row) {
+			//	$row = trim(preg_replace('/[^a-zA-Z]/', '', $row));
+			//	if ($row != '') $categories[] = $row;
+			//}
 			
 			// Check if there is no categories or push notifications are disabled
 			if (is_array($categories) && count($categories) > 0 && get_option('app_push_notifications') != 'Off') {
 				try {
 					$push = new parsePush();
 					$push->alert = $post->data['title'];
-					$push->channels = $categories;
+					//$push->channels = $categories;
 					$push->badge = "increment";
 					$push->sound = "example.caf";
 					$push->post_id = $post->data[wpId];
